@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flowreview"
+version = "0.2.0"
+description = "Deny without disabling: safety evaluation and control for multi-agent systems"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+authors = [
+  {name = "Yunbei Zhang"}, {name = "Saiyue Lyu"}, {name = "Janet Wang"},
+  {name = "Yingqiang Ge"}, {name = "Jiang Guo"}, {name = "Jihun Hamm"},
+  {name = "Chandan K. Reddy"}
+]
+dependencies = ["httpx==0.28.1"]
+
+[project.optional-dependencies]
+bedrock = ["boto3>=1.40,<2"]
+agentdojo = ["agentdojo==0.1.35"]
+
+[project.scripts]
+flowreview = "flowreview.cli:main"
+
+[project.urls]
+Homepage = "https://yunbeizhang.github.io/FlowReview/"
+Repository = "https://github.com/yunbeizhang/FlowReview"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flowreview"]

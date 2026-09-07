@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FlowReview measures and controls composed information flows in multi-agent systems, blocking unauthorized use while preserving authorized capabilities.">
+<meta property="og:title" content="FlowReview: Deny Without Disabling">
+<meta property="og:description" content="Safety Evaluation and Control for Multi-Agent Systems">
+<meta property="og:image" content="https://yunbeizhang.github.io/FlowReview/assets/teaser.png">
+<title>FlowReview · Deny Without Disabling</title>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%234E6FA8'/%3E%3Ctext x='24' y='33' text-anchor='middle' fill='white' font-family='sans-serif' font-size='32' font-weight='700'%3EF%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="nav"><a class="brand" href="#">FlowReview</a><nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#start">Get started</a><a href="https://github.com/yunbeizhang/FlowReview">GitHub ↗</a></nav></header>
+<main>
+<section class="hero">
+<p class="eyebrow">MULTI-AGENT SAFETY</p>
+<h1>Deny Without Disabling</h1>
+<p class="subtitle">Safety Evaluation and Control<br class="desktop-break"> for Multi-Agent Systems</p>
+<p class="authors">Yunbei Zhang · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>Jiang Guo · Jihun Hamm · Chandan K. Reddy</p>
+<p class="lead">Block unauthorized use.<br><strong>Preserve authorized capability.</strong></p>
+<div class="links"><a class="button primary" href="https://github.com/yunbeizhang/FlowReview">Code on GitHub <span>↗</span></a><a class="button" href="https://github.com/yunbeizhang/FlowReview/tree/main/data">Evaluation data <span>↗</span></a><a class="button" href="#start">Quickstart <span>↓</span></a></div>
+</section>
+<section id="overview" class="section">
+<div class="section-heading"><p class="eyebrow">THE PROBLEM</p><h2>Safety changes when information comes together.</h2></div>
+<p class="body-copy">One agent sees part of a record. Another sees a different part. A downstream agent can combine their contributions into a governed object and propose an action using it. Each contribution may be admissible in isolation, while the composed action violates trusted policy.</p>
+<figure><a href="assets/teaser.png" aria-label="Open the composition figure at full size"><img src="assets/teaser.png" alt="Paper figure contrasting local and global views of information composed across a multi-agent team." width="1600" loading="eager"></a><figcaption>Composition creates a safety requirement that individual-agent review can miss.</figcaption></figure>
+<p class="body-copy">Preventing every action would remove useful capabilities too. FlowReview asks whether the system can distinguish prohibited use from the authorized use required by the task.</p>
+</section>
+<section id="method" class="section">
+<div class="section-heading"><p class="eyebrow">FLOWREVIEW</p><h2>Measure the distinction. Carry it through execution.</h2></div>
+<p class="body-copy"><strong>Paired policy evaluation</strong> makes both outcomes part of the safety target. A system succeeds when it blocks denied use and completes the required authorized use. FlowReview connects that measurement to three capabilities.</p>
+<div class="capabilities"><article><span class="number">01</span><h3>Object resolution</h3><p>Identify the governed object made available by the agents’ combined information.</p></article><article><span class="number">02</span><h3>Permission ranking</h3><p>Bind the proposed action to the object and its trusted permission.</p></article><article><span class="number">03</span><h3>Deterministic enforcement</h3><p>Ensure that execution follows the permission decision.</p></article></div>
+<figure class="wide"><a href="assets/pipeline.png" aria-label="Open the FlowReview figure at full size"><img src="assets/pipeline.png" alt="Paper figure showing paired policy evaluation and the three FlowReview capabilities." width="1800" loading="lazy"></a></figure>
+</section>
+<section class="section findings">
+<div class="section-heading"><p class="eyebrow">WHAT WE FIND</p><h2>Multi-agent safety requires control over composed information flows.</h2></div>
+<div class="finding-grid"><article><h3>Composition changes what is actionable.</h3><p>Local admissibility can coexist with a prohibited downstream action. Reviewing the assembled object exposes the missing permission distinction.</p></article><article><h3>Delegation can lose the context of authority.</h3><p>Content can survive a handoff while its lineage and permission attribution diverge. Reliable lineage and correct permission decisions are distinct capabilities.</p></article><article><h3>Correct review must survive execution.</h3><p>Object binding, runtime enforcement, and the placement of assembly capabilities determine whether safety preserves the authorized task.</p></article></div>
+</section>
+<section id="start" class="section start">
+<div class="section-heading"><p class="eyebrow">CODE + DATA</p><h2>Run FlowReview with your model.</h2></div>
+<p class="body-copy">The code includes permission-specialist, object-assembly, policy-update, and AgentDojo evaluations with their input datasets. Use OpenAI, Anthropic, Bedrock, or a local model server.</p>
+<div class="terminal"><div class="terminal-head"><span>Quickstart</span><button type="button" id="copy" aria-label="Copy quickstart commands">Copy</button></div><pre id="commands"><code>git clone https://github.com/yunbeizhang/FlowReview.git
+cd FlowReview
+uv sync
+export OPENAI_API_KEY="your-key"
+uv run flowreview run --suite assembly --model gpt-4.1-mini --output runs/assembly</code></pre></div>
+<p class="start-links"><a href="https://github.com/yunbeizhang/FlowReview#run-with-a-model-api">Model setup →</a><a href="https://github.com/yunbeizhang/FlowReview#choose-an-evaluation">Evaluations →</a><a href="https://github.com/yunbeizhang/FlowReview/tree/main/data">Dataset →</a></p>
+</section>
+</main>
+<footer><span>FlowReview</span><a href="https://github.com/yunbeizhang/FlowReview">Code and data ↗</a></footer>
+<script>
+document.getElementById('copy').addEventListener('click',async function(){try{await navigator.clipboard.writeText(document.getElementById('commands').innerText);this.textContent='Copied';setTimeout(()=>this.textContent='Copy',1600)}catch{this.textContent='Select to copy';getSelection().selectAllChildren(document.getElementById('commands'))}});
+</script>
+</body>
+</html>
