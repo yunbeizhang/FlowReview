@@ -16,9 +16,11 @@ Multi-agent systems combine information to solve tasks. The same process can tur
 
 ![Composition across agents](assets/teaser.png)
 
-Our work introduces **paired policy evaluation** and connects three review capabilities: **object resolution, permission ranking, and deterministic enforcement**.
+**Information composition.** Individually admissible agent contributions can combine into a governed object whose downstream use violates trusted policy.
 
 ![FlowReview overview](assets/pipeline.png)
+
+**FlowReview** uses paired policy evaluation to measure whether a system blocks denied use while completing required authorized use. It connects three review capabilities: object resolution, permission ranking, and deterministic enforcement.
 
 ## Main results
 
@@ -28,7 +30,7 @@ Our work introduces **paired policy evaluation** and connects three review capab
 
 ![Controlled comparisons of object binding, deterministic enforcement, and global composition review](assets/results-mechanisms.png)
 
-**Three complementary capabilities.** The panels compare (a) class-only with object-bound review, (b) model review with deterministic enforcement after detection, and (c) local with global resolution under composition. Gray marks the baseline and blue the added control. Each panel uses its own scale and evaluation set.
+**The three panels isolate object binding, deterministic enforcement, and global composition review.** Gray marks each baseline and blue the added control, with separate scales and evaluation sets.
 
 ## Quickstart
 
@@ -107,3 +109,5 @@ uv run flowreview inspect runs/assembly
 ```
 
 Each run saves `summary.json` and per-unit observations in its output directory.
+
+## Citation
