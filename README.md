@@ -20,6 +20,16 @@ Our work introduces **paired policy evaluation** and connects three review capab
 
 ![FlowReview overview](assets/pipeline.png)
 
+## Main results
+
+![Capability ladder: selective correctness increases while denied disclosure decreases](assets/results-ladder.png)
+
+**Safety without disabling authorized use.** Object binding and deterministic enforcement raise selective correctness from 0% to 99.6% and reduce verbatim disclosure to 0% in the pooled 24-round evaluation.
+
+![Controlled comparisons of object binding, deterministic enforcement, and global composition review](assets/results-mechanisms.png)
+
+**Three complementary capabilities.** The panels compare (a) class-only with object-bound review, (b) model review with deterministic enforcement after detection, and (c) local with global resolution under composition. Gray marks the baseline and blue the added control. Each panel uses its own scale and evaluation set.
+
 ## Quickstart
 
 ```bash

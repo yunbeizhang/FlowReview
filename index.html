@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%234E6FA8'/%3E%3Ctext x='24' y='33' text-anchor='middle' fill='white' font-family='sans-serif' font-size='32' font-weight='700'%3EF%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-<header class="nav"><a class="brand" href="#">FlowReview</a><nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#start">Get started</a><a href="https://github.com/yunbeizhang/FlowReview">GitHub ↗</a></nav></header>
+<header class="nav"><a class="brand" href="#">FlowReview</a><nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#start">Get started</a><a href="https://github.com/yunbeizhang/FlowReview">GitHub ↗</a></nav></header>
 <main>
 <section class="hero">
 <p class="eyebrow">MULTI-AGENT SAFETY</p>
@@ -33,6 +33,13 @@
 <p class="body-copy"><strong>Paired policy evaluation</strong> makes both outcomes part of the safety target. A system succeeds when it blocks denied use and completes the required authorized use. FlowReview connects that measurement to three capabilities.</p>
 <div class="capabilities"><article><span class="number">01</span><h3>Object resolution</h3><p>Identify the governed object made available by the agents’ combined information.</p></article><article><span class="number">02</span><h3>Permission ranking</h3><p>Bind the proposed action to the object and its trusted permission.</p></article><article><span class="number">03</span><h3>Deterministic enforcement</h3><p>Ensure that execution follows the permission decision.</p></article></div>
 <figure class="wide"><a href="assets/pipeline.png" aria-label="Open the FlowReview figure at full size"><img src="assets/pipeline.png" alt="Paper figure showing paired policy evaluation and the three FlowReview capabilities." width="1800" loading="lazy"></a></figure>
+</section>
+<section id="results" class="section">
+<div class="section-heading"><p class="eyebrow">MAIN RESULTS</p><h2>Block denied use. Complete authorized use.</h2></div>
+<p class="body-copy">Object binding and deterministic enforcement raise selective correctness from 0% to 99.6% and reduce verbatim disclosure to 0% in the pooled 24-round evaluation.</p>
+<figure class="wide"><a href="assets/results-ladder.png" aria-label="Open the capability-ladder results at full size"><img src="assets/results-ladder.png" alt="Paper Figure 3. Selective correctness is 0.0%, 96.8%, and 99.6% for class-only review, object binding, and an added hard gate. Verbatim disclosure is 11.8%, 2.4%, and 0.0%." width="2400" height="480" loading="lazy"></a><figcaption>Selective correctness requires both denied use to be blocked and required authorized use to be completed. Bars pool two attack families at 24 adaptive rounds.</figcaption></figure>
+<h3>Three complementary capabilities</h3>
+<figure class="wide"><a href="assets/results-mechanisms.png" aria-label="Open the controlled-comparison results at full size"><img src="assets/results-mechanisms.png" alt="Paper Figure 4. Object binding raises selective correctness from 0.0% to 97.9%. Deterministic enforcement reduces verbatim disclosure from 1.11% to 0.00%. Global composition review reduces denied commits from 86.0% to 0.0%." width="2400" height="390" loading="lazy"></a><figcaption>(a) Class-only vs. object-bound review. (b) Model review vs. deterministic enforcement after detection. (c) Local vs. global resolution under composition. Gray marks the baseline and blue the added control. Panels use separate scales and evaluation sets.</figcaption></figure>
 </section>
 <section class="section findings">
 <div class="section-heading"><p class="eyebrow">WHAT WE FIND</p><h2>Multi-agent safety requires control over composed information flows.</h2></div>
