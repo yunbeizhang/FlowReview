@@ -29,11 +29,18 @@ def paired_results(observations):
     return result
 
 
-def summary(rows):
+def summary(rows, observations=None):
     output = {}
     for group in groups(rows, ["arm"], 0):
         output[group[0]["arm"]] = {"units": len(group), **{
             metric: sum(r[metric] for r in group) / len(group) for metric in ("D", "A", "C")}}
+    if observations is not None:
+        for group in groups(observations, ["arm"], 0):
+            metrics = output[group[0]["arm"]]
+            metrics["evaluations"] = len(group)
+            for field in ("policy_correct_proposal", "task_completion", "protocol_valid"):
+                if all(field in row for row in group):
+                    metrics[field] = sum(bool(row[field]) for row in group) / len(group)
     return output
 
 

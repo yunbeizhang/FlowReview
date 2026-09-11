@@ -113,7 +113,7 @@ def main(argv=None):
                 writer = protocol.Writer(out / 'paired_scores.jsonl')
                 for row in metrics:
                     writer.append(row)
-                metrics = runners.summary(metrics)
+                metrics = runners.summary(metrics, observations)
             report = {'fixture_only': fixture_only, 'provider_attempts': provider.calls,
                       'failed_calls': provider.errors, 'metrics': metrics,
                       'status': 'completed_with_provider_errors' if provider.errors else 'completed'}
