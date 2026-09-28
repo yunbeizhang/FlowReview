@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "flowreview"
 version = "0.2.0"
-description = "Deny without disabling: safety evaluation and control for multi-agent systems"
+description = "Deny without disabling: authorization-paired evaluation and control for multi-agent systems"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = "Apache-2.0"

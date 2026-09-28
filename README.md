@@ -4,10 +4,12 @@
 
 # FlowReview
 
-### Deny Without Disabling: Safety Evaluation and Control for Multi-Agent Systems
+### Deny Without Disabling: Authorization-Paired Evaluation and Control for Multi-Agent Systems
 
-Yunbei Zhang · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>
+Yunbei Zhang<sup>*</sup> · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>
 Jiang Guo · Jihun Hamm · Chandan K. Reddy
+
+<sup>*</sup>Corresponding author: [yzhang111@tulane.edu](mailto:yzhang111@tulane.edu)
 
 [![Website](https://img.shields.io/badge/Project-Website-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/)
 [![Examples](https://img.shields.io/badge/Explore-Case_studies-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/#examples)
@@ -17,72 +19,55 @@ Jiang Guo · Jihun Hamm · Chandan K. Reddy
 
 </div>
 
-Multi-agent systems combine information to solve tasks. Individually admissible contributions can compose into a governed object whose downstream use violates trusted policy. **FlowReview measures and controls these composed information flows.**
+Multi-agent systems derive their capabilities from sharing evidence, delegating tasks, and combining information. Contributions that are admissible in isolation can jointly enable a prohibited use. **FlowReview connects object resolution, permission ranking, and deterministic enforcement to control these composed information flows.** Authorization-paired evaluation requires both blocking the prohibited use and completing the task-required authorized use.
 
-[![Composition across agents](assets/teaser.png)](https://yunbeizhang.github.io/FlowReview/#research)
+[![Local and global review of the same composed action](assets/teaser.png)](https://yunbeizhang.github.io/FlowReview/#research)
 
-Reviewing the combined artifacts reduces denied commits from **413/480 to 0/480**, while preserving authorized supply at **459/480**. The controlled comparison holds the downstream proposal fixed and changes the reader’s access.
-
-FlowReview connects **object resolution**, **permission ranking**, and **deterministic enforcement**. Paired policy evaluation measures whether the system blocks denied use and completes the required authorized use.
+With the artifacts, downstream proposal, and policy held fixed, reviewing combined artifacts reduces denied commits from **86.0% to zero**, with authorized supply unchanged at **459/480**. This controlled comparison identifies how composition defeats local review.
 
 <details>
 <summary>View the framework figure</summary>
 
 ![FlowReview framework](assets/pipeline.png)
 
-The three capabilities identify the governed object, bind the proposed action to its trusted permission, and enforce the decision at execution.
+Object and action contracts inform all three capabilities. Trusted policy guides permission ranking and is independently checked by the commit gate before execution.
 
 </details>
 
 ## Paper results
 
-### Safety through the capability ladder
+### Object binding and enforcement
 
-![Capability ladder results](assets/results-ladder.png)
+![Selective correctness and verbatim disclosure across the capability ladder](assets/results-ladder.png)
 
-**Selective correctness reaches 99.6% in the pooled 24-round evaluation**, with 576 runs per attack family and condition. Across all evaluated attack budgets, the final control records 0/2,304 verbatim disclosures.
+Object binding and enforcement raise selective correctness from zero to roughly **99%**. The final configuration records **0/2,304 verbatim disclosures at the registered action boundary** across two attack families and two budgets. Bars show pooled rates, hollow markers show scenario means, and whiskers show 95% scenario-cluster bootstrap intervals.
 
-![Controlled comparisons of object binding, deterministic enforcement, and global composition review](assets/results-mechanisms.png)
+![Controlled interventions on object identity, execution control, and reader scope](assets/results-mechanisms.png)
 
-The panels isolate three complementary capabilities. Gray marks each baseline and blue the added control, with separate scales and evaluation sets.
+The panels isolate object identity, enforcement, and reader scope on separate evaluation sets. In panel (c), local and global readers evaluate the same proposals, with **480 proposals per policy and reader**. Representation also matters: a transformation-specific decoder reduces denied commits in **22/40** comparisons, increases them in **8/40**, and leaves **10/40** unchanged. Each reader can miss uses recognized by the other.
 
-### Information distribution and team size
+### Information distribution and lineage
 
-<table>
-<tr>
-<td width="29%"><img src="assets/f6a_matrix.png" alt="Control coverage by agent and contributor count"></td>
-<td width="25%"><img src="assets/f6b_units.png" alt="Denied commits under local and global review"></td>
-<td width="46%"><img src="assets/f6c_teams.png" alt="Maximal-split coverage by model team"></td>
-</tr>
-<tr><td align="center">Coverage (%)</td><td align="center">Denied commits</td><td align="center">Coverage by team (%)</td></tr>
-</table>
+![Contributor count and paired coverage changes by model team](assets/results-contributors.png)
 
-At four information contributors, increasing the team from 8 to 16 agents preserves full coverage. At 15 contributors, coverage falls to **149/168**. Each cell contains 168 graphs across seven teams, showing how information distribution changes the resolution burden.
+Adding agents at four fixed contributors preserves full coverage. Splitting the object across 15 contributors leaves **19/168** graphs unresolved despite complete information and full authorized supply. Hollow markers show the seven team rates. Panel (b) shows paired coverage changes with 95% scenario-cluster bootstrap intervals. Only homogeneous Haiku's decline is significant after Holm correction.
 
-### Lineage and permission under delegation
+![Lineage across agents and contract endpoints](assets/results-lineage.png)
 
-<table>
-<tr>
-<td width="38%"><img src="assets/f5a_depth.png" alt="Complete lineage across delegation depths"></td>
-<td width="62%"><img src="assets/f5b_endpoints.png" alt="Lineage and permission endpoints under explicit and type-only contracts"></td>
-</tr>
-<tr><td align="center">Complete lineage (%)</td><td align="center">Endpoints by contract (%)</td></tr>
-</table>
-
-An explicit contract raises complete lineage from **202/840 to 834/840**, while permission-attribution drift remains in **676/840** graphs. Correct dependency records and correct permission decisions require distinct capabilities. Gray marks the type-only contract.
+Explicit contracts improve complete lineage from **202/840 to 834/840**, while permission-attribution errors remain in **676/840** graphs. Hollow markers show team rates and paired bars compare the two contracts. Attribution checks whether every role preserves an external claim's permission and untrusted authority, separately from whether the selected action obeys trusted policy.
 
 ### Capability placement and tool-use transfer
 
 | Study | Comparison | Paper result |
 | --- | --- | --- |
-| Permission placement | Four isolated specialists, 480 graphs each | Policy correctness 1.000 for every specialist |
-| Assembly placement | Model composer → runtime assembler on matched artifacts | Authorized supply 0.350 → 1.000 |
-| Policy recovery | Current-policy reread / version check with one repair | Current-policy supply 120/120 / 0/120 |
-| AgentDojo-derived Sonnet transfer | Native → runtime control, 24 fresh pairs | Target commits 21/24 → 0/24, task utility 9/24 → 21/24 |
+| Permission placement | Four isolated specialists, 480 graphs each | Policy-correct proposals and task completion both 1.000, with 0/480 denied commits per specialist |
+| Assembly placement | Model composer → runtime assembler on identical validated artifacts | Authorized supply 0.350 → 1.000 |
+| Policy recovery | Current-policy reread / version checking with one repair | Current-policy supply 120/120 / 0/120 |
+| AgentDojo-derived Sonnet transfer | Native → runtime control, 24 independent pairs | Target commits 21/24 → 0/24, task utility 9/24 → 21/24 |
 
-The assembly comparison uses validated artifact failover and 80 executions per arm, including 40 under ALLOW. Permission and assembly are separate studies. Policy recovery records zero wrong commits in both listed arms, separating safe rejection from successful recovery.
+Permission selection and assembly are separate studies. Assembly uses 80 executions per arm, including 40 under ALLOW. In Sonnet transfer, exact-call match remains **5/24** in both arms, and **4/24** final-state violations remain under control. The saved calendar case illustrates how blocking an extra action can improve utility: both arms create the same requested event, but control blocks an extra private-email forwarding action. In the exploratory Qwen comparison, preventing target commits instead reduces utility from **15/32 to 6/32**.
 
-[Case studies on the website](https://yunbeizhang.github.io/FlowReview/#examples) explain credential reconstruction, an action-binding error, and a calendar task where blocking private-email forwarding preserves the requested event.
+The findings support a common design principle: **preserve object identity and permission through communication, then verify the action that executes.** [Case studies on the website](https://yunbeizhang.github.io/FlowReview/#examples) show composition, permission binding, and tool execution.
 
 ## Quickstart
 
@@ -97,7 +82,7 @@ uv run flowreview run --suite assembly --model gpt-4.1-mini --output runs/assemb
 uv run flowreview inspect runs/assembly
 ```
 
-This run makes three contributor calls and one composer call for each of two artifact conditions, then compares model and runtime assembly under DENY and ALLOW. It reports results for four combinations of assembly placement and artifact failover.
+This run makes three contributor calls, then one composer call for each of two artifact conditions, for five model calls in total. It compares model and runtime assembly under DENY and ALLOW. It reports results for four combinations of assembly placement and artifact failover.
 
 To inspect the full workload before making model requests:
 

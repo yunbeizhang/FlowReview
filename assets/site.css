@@ -161,3 +161,7 @@ body:has(dialog[open]) { overflow:hidden; }
  .authors > div { display:contents; }
  .authors > div:last-child > span:last-child { grid-column:1/-1; }
 }
+
+.correspondence { margin-top:10px; font-size:11px; color:var(--muted); text-align:center; }
+.correspondence a { text-decoration:underline; text-underline-offset:3px; }
+.reference-list dd { font-size:12px; text-align:right; }
