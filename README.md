@@ -6,10 +6,8 @@
 
 ### Deny Without Disabling: Authorization-Paired Evaluation and Control for Multi-Agent Systems
 
-Yunbei Zhang<sup>*</sup> · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>
+Yunbei Zhang · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>
 Jiang Guo · Jihun Hamm · Chandan K. Reddy
-
-<sup>*</sup>Corresponding author: [yzhang111@tulane.edu](mailto:yzhang111@tulane.edu)
 
 [![Website](https://img.shields.io/badge/Project-Website-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/)
 [![Examples](https://img.shields.io/badge/Explore-Case_studies-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/#examples)
