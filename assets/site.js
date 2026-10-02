@@ -31,7 +31,7 @@ document.querySelectorAll('[data-copy]').forEach(button => {
     try {
       await navigator.clipboard.writeText(target.textContent);
       button.textContent = 'Copied';
-      status.textContent = 'Quickstart commands copied.';
+      status.textContent = 'Content copied to clipboard.';
     } catch {
       const range = document.createRange();
       range.selectNodeContents(target);
@@ -39,7 +39,7 @@ document.querySelectorAll('[data-copy]').forEach(button => {
       selection.removeAllRanges();
       selection.addRange(range);
       button.textContent = 'Selected';
-      status.textContent = 'Commands selected. Use your keyboard to copy.';
+      status.textContent = 'Content selected. Use your keyboard to copy.';
     }
     copyTimer = setTimeout(() => { button.textContent = 'Copy'; status.textContent = ''; }, 2200);
   });

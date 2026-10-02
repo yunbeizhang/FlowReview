@@ -9,6 +9,8 @@
 Yunbei Zhang · Saiyue Lyu · Janet Wang · Yingqiang Ge<br>
 Jiang Guo · Jihun Hamm · Chandan K. Reddy
 
+[![Paper](https://img.shields.io/badge/Paper-arXiv%3A2610.00371-164e52?style=flat-square)](https://arxiv.org/abs/2610.00371)
+[![PDF](https://img.shields.io/badge/Paper-PDF-164e52?style=flat-square)](https://arxiv.org/pdf/2610.00371)
 [![Website](https://img.shields.io/badge/Project-Website-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/)
 [![Examples](https://img.shields.io/badge/Explore-Case_studies-164e52?style=flat-square)](https://yunbeizhang.github.io/FlowReview/#examples)
 [![Data](https://img.shields.io/badge/Evaluation-Data-164e52?style=flat-square)](data/)
@@ -244,3 +246,16 @@ D/A/C are averaged over paired evaluation units. Additional metrics are reported
 The [input data](data/) includes scenarios, governed objects, policies, agent assignments, and tool-use tasks. JSONL inputs are compressed with gzip and loaded directly by the code.
 
 ## Citation
+
+```bibtex
+@article{zhang2026deny,
+  title={Deny Without Disabling: Authorization-Paired Evaluation and Control for Multi-Agent Systems},
+  author={Zhang, Yunbei and Lyu, Saiyue and Wang, Janet and Ge, Yingqiang and Guo, Jiang and Hamm, Jihun and Reddy, Chandan K.},
+  journal={arXiv preprint arXiv:2610.00371},
+  year={2026},
+  eprint={2610.00371},
+  archivePrefix={arXiv},
+  primaryClass={cs.MA},
+  url={https://arxiv.org/abs/2610.00371}
+}
+```

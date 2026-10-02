@@ -28,7 +28,7 @@
   <p class="paper-subtitle">Authorization-Paired Evaluation<br>and Control for Multi-Agent Systems</p>
   <div class="authors" aria-label="Authors"><div><span>Yunbei Zhang<sup>*</sup></span><span>Saiyue Lyu</span><span>Janet Wang</span><span>Yingqiang Ge</span></div><div><span>Jiang Guo</span><span>Jihun Hamm</span><span>Chandan K. Reddy</span></div></div>
   <p class="correspondence"><sup>*</sup>Corresponding author: <a href="mailto:yzhang111@tulane.edu">yzhang111@tulane.edu</a></p>
-  <div class="hero-links"><a class="button primary" href="https://github.com/yunbeizhang/FlowReview">Code <span aria-hidden="true">↗</span></a><a class="button" href="https://github.com/yunbeizhang/FlowReview/tree/main/data">Evaluation data <span aria-hidden="true">↗</span></a><a class="button" href="#examples">Case studies <span aria-hidden="true">↓</span></a></div>
+  <div class="hero-links"><a class="button primary" href="https://arxiv.org/abs/2610.00371">Paper <span aria-hidden="true">↗</span></a><a class="button" href="https://arxiv.org/pdf/2610.00371">PDF <span aria-hidden="true">↗</span></a><a class="button" href="https://github.com/yunbeizhang/FlowReview">Code <span aria-hidden="true">↗</span></a><a class="button" href="https://github.com/yunbeizhang/FlowReview/tree/main/data">Evaluation data <span aria-hidden="true">↗</span></a><a class="button" href="#examples">Case studies <span aria-hidden="true">↓</span></a></div>
 </section>
 
 <section class="overview container" id="research" aria-labelledby="overview-title">
@@ -81,6 +81,19 @@ uv run flowreview inspect runs/assembly</code></pre></div>
   <p class="code-explanation">The default run evaluates one complete comparison. Add <code>--limit 0</code> to run the full confirmation split, or <code>--dry-run</code> to inspect the selected workload before making model requests. Each agent uses a separate model call.</p>
   <div class="table-scroll"><table class="suite-table"><caption>Evaluation commands and their comparisons</caption><thead><tr><th>Suite</th><th>Comparison</th><th>Full confirmation split</th></tr></thead><tbody><tr><th><code>permission</code></th><td>Coordinator and isolated permission specialists</td><td>240 policy pairs / 480 graphs</td></tr><tr><th><code>assembly</code></th><td>Model and runtime assembly, with and without artifact failover</td><td>40 units / 80 executions per arm</td></tr><tr><th><code>policy-update</code></th><td>Current-policy reread, version checking, and one repair</td><td>120 units / 240 evaluations per arm</td></tr><tr><th><code>agentdojo</code></th><td>Native and controlled tool execution</td><td>24 matched pairs / 48 trajectories</td></tr></tbody></table></div>
   <div class="code-links"><a class="button primary" href="https://github.com/yunbeizhang/FlowReview#run-the-experiments">Experiment commands ↗</a><a class="button" href="https://github.com/yunbeizhang/FlowReview#model-setup">OpenAI / Anthropic / Bedrock / local ↗</a><a class="inline-link" href="https://github.com/yunbeizhang/FlowReview/tree/main/data">Browse the data ↗</a></div>
+</section>
+<section class="code-section container" id="citation" aria-labelledby="citation-title">
+  <div class="section-heading"><h2 id="citation-title">Citation</h2><p><a class="inline-link" href="https://arxiv.org/abs/2610.00371">Read the paper on arXiv ↗</a></p></div>
+  <div class="code-block"><div class="code-heading"><span>BibTeX</span><button type="button" class="copy-button" data-copy="citation-code">Copy</button></div><pre id="citation-code"><code>@article{zhang2026deny,
+  title={Deny Without Disabling: Authorization-Paired Evaluation and Control for Multi-Agent Systems},
+  author={Zhang, Yunbei and Lyu, Saiyue and Wang, Janet and Ge, Yingqiang and Guo, Jiang and Hamm, Jihun and Reddy, Chandan K.},
+  journal={arXiv preprint arXiv:2610.00371},
+  year={2026},
+  eprint={2610.00371},
+  archivePrefix={arXiv},
+  primaryClass={cs.MA},
+  url={https://arxiv.org/abs/2610.00371}
+}</code></pre></div>
 </section>
 </main>
 <footer class="container"><span>FlowReview</span><p>Block unauthorized use. Preserve authorized capability.</p><a href="https://github.com/yunbeizhang/FlowReview">GitHub ↗</a></footer>
